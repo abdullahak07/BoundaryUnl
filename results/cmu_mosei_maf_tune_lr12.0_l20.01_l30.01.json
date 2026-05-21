@@ -1,0 +1,14 @@
+{
+  "lambda_r": 12.0,
+  "lambda_2": 0.01,
+  "lambda_3": 0.01,
+  "seed": 42,
+  "forget_acc": 0.16847826540470123,
+  "retain_acc": 0.2458830177783966,
+  "trade_off": 0.3795362383545596,
+  "mia_asr": 0.473731884057971,
+  "ss_leakage": 0.019344862550497055,
+  "epochs_run": -1,
+  "elapsed_s": 204.6,
+  "status": "OK"
+}

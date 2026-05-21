@@ -1,0 +1,172 @@
+{
+  "memotion7k": {
+    "finetune_Dr": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8138957619667053,
+      "trade_off": 0.8974008088361636,
+      "mia_asr": 0.49255583126550867,
+      "ss_leakage": 0.22878338396549225
+    },
+    "delete_refine": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.48014888337468986,
+      "ss_leakage": 0.033823464065790176
+    },
+    "random_relabel": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.49007444168734493,
+      "ss_leakage": 0.01838712766766548
+    },
+    "fisher": {
+      "error": "\nAll the 2 fits failed.\nIt is very likely that your model is misconfigured.\nYou can try to debug the error by setting error_score='raise'.\n\nBelow are more details about the failures:\n--------------------------------------------------------------------------------\n2 fits failed with the following error:\nTraceback (most recent call last):\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\model_selection\\_validation.py\", line 859, in _fit_and_score\n    estimator.fit(X_train, y_train, **fit_params)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\base.py\", line 1365, in wrapper\n    return fit_method(estimator, *args, **kwargs)\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py\", line 1247, in fit\n    X, y = validate_data(\n           ~~~~~~~~~~~~~^\n        self,\n        ^^^^^\n    ...<5 lines>...\n        accept_large_sparse=solver not in [\"liblinear\", \"sag\", \"saga\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\utils\\validation.py\", line 2971, in validate_data\n    X, y = check_X_y(X, y, **check_params)\n           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\utils\\validation.py\", line 1368, in check_X_y\n    X = check_array(\n        X,\n    ...<12 lines>...\n        input_name=\"X\",\n    )\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\utils\\validation.py\", line 1105, in check_array\n    _assert_all_finite(\n    ~~~~~~~~~~~~~~~~~~^\n        array,\n        ^^^^^^\n    ...<2 lines>...\n        allow_nan=ensure_all_finite == \"allow-nan\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\utils\\validation.py\", line 120, in _assert_all_finite\n    _assert_all_finite_element_wise(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        X,\n        ^^\n    ...<4 lines>...\n        input_name=input_name,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\34998855\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sklearn\\utils\\validation.py\", line 169, in _assert_all_finite_element_wise\n    raise ValueError(msg_err)\nValueError: Input X contains NaN.\nLogisticRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values\n"
+    },
+    "amnesiac": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.48511166253101734,
+      "ss_leakage": 0.028679942712187767
+    },
+    "boundary_only": {
+      "forget_acc": 0.27718549966812134,
+      "retain_acc": 0.5806451439857483,
+      "trade_off": 0.6439765610693786,
+      "mia_asr": 0.5223325062034739,
+      "ss_leakage": 1.0454469919204712
+    },
+    "fast_mu": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.6947891116142273,
+      "trade_off": 0.8199121729693731,
+      "mia_asr": 0.45285359801488834,
+      "ss_leakage": 1.668174377300602e-06
+    },
+    "MAF": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.5148328987035086,
+      "ss_leakage": 0.04309527948498726
+    }
+  },
+  "crema-d": {
+    "finetune_Dr": {
+      "forget_acc": 0.23560209572315216,
+      "retain_acc": 0.6056034564971924,
+      "trade_off": 0.6757978878323474,
+      "mia_asr": 0.6178010471204188,
+      "ss_leakage": 0.0
+    },
+    "delete_refine": {
+      "forget_acc": 0.5863874554634094,
+      "retain_acc": 0.5894396305084229,
+      "trade_off": 0.48611554112697214,
+      "mia_asr": 0.5418848167539267,
+      "ss_leakage": 0.0
+    },
+    "random_relabel": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.5549569129943848,
+      "trade_off": 0.7137907273915426,
+      "mia_asr": 0.6492146596858639,
+      "ss_leakage": 0.0
+    },
+    "fisher": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.20581896603107452,
+      "trade_off": 0.3413762294824785,
+      "mia_asr": 0.5340314136125655,
+      "ss_leakage": 0.0
+    },
+    "amnesiac": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.35991379618644714,
+      "trade_off": 0.5293185453309457,
+      "mia_asr": 0.6675392670157068,
+      "ss_leakage": 0.0
+    },
+    "boundary_only": {
+      "forget_acc": 0.07329843193292618,
+      "retain_acc": 0.5786637663841248,
+      "trade_off": 0.7124498052657284,
+      "mia_asr": 0.6832460732984293,
+      "ss_leakage": 0.0
+    },
+    "fast_mu": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.24568966031074524,
+      "trade_off": 0.3944636744427282,
+      "mia_asr": 0.49214659685863876,
+      "ss_leakage": 0.0
+    },
+    "MAF": {
+      "forget_acc": 0.07329843193292618,
+      "retain_acc": 0.38038793206214905,
+      "trade_off": 0.5393756021771046,
+      "mia_asr": 0.7172531167979003,
+      "ss_leakage": 0.0
+    }
+  },
+  "meld": {
+    "finetune_Dr": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.6019531488418579,
+      "trade_off": 0.751524037113125,
+      "mia_asr": 0.5800000000000001,
+      "ss_leakage": 9.390920639038086
+    },
+    "delete_refine": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.6527343988418579,
+      "trade_off": 0.7898842055919656,
+      "mia_asr": 0.6,
+      "ss_leakage": 3.6466829776763916
+    },
+    "random_relabel": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.641406238079071,
+      "trade_off": 0.7815325946728524,
+      "mia_asr": 0.67,
+      "ss_leakage": 2.560025453567505
+    },
+    "fisher": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.10195312649011612,
+      "trade_off": 0.18504076814020562,
+      "mia_asr": 0.48,
+      "ss_leakage": 577350.1875
+    },
+    "amnesiac": {
+      "forget_acc": 0.03999999910593033,
+      "retain_acc": 0.641406238079071,
+      "trade_off": 0.7690116026077224,
+      "mia_asr": 0.61,
+      "ss_leakage": 3.353703260421753
+    },
+    "boundary_only": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.6441406011581421,
+      "trade_off": 0.7835590225123152,
+      "mia_asr": 0.71,
+      "ss_leakage": 3.7852673530578613
+    },
+    "fast_mu": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.45429688692092896,
+      "trade_off": 0.6247649857557996,
+      "mia_asr": 0.48,
+      "ss_leakage": 5.311305358191021e-06
+    },
+    "MAF": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.365234375,
+      "trade_off": 0.5350500715307582,
+      "mia_asr": 0.6209150326797386,
+      "ss_leakage": 1.4463001489639282
+    }
+  }
+}

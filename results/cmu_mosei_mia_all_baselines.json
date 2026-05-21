@@ -1,0 +1,58 @@
+{
+  "random_relabeling": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6734809875488281,
+    "trade_off": 0.8048863328113282,
+    "mia_asr": 0.7735507246376812,
+    "ss_leakage": 0.059096600860357285,
+    "status": "OK"
+  },
+  "fisher_forgetting": {
+    "forget_acc": 1.0,
+    "retain_acc": 0.0,
+    "trade_off": 0.0,
+    "mia_asr": 0.5,
+    "ss_leakage": 2846.662353515625,
+    "status": "OK"
+  },
+  "amnesiac": {
+    "forget_acc": 0.6648550629615784,
+    "retain_acc": 0.6678023934364319,
+    "trade_off": 0.446305771602972,
+    "mia_asr": 0.447463768115942,
+    "ss_leakage": 0.908489465713501,
+    "status": "OK"
+  },
+  "boundary": {
+    "forget_acc": 0.4057970941066742,
+    "retain_acc": 0.6757524013519287,
+    "trade_off": 0.6323593251776766,
+    "mia_asr": 0.8079710144927537,
+    "ss_leakage": 0.1195594072341919,
+    "status": "OK"
+  },
+  "fast_mu": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.5332197546958923,
+    "trade_off": 0.6955555497674294,
+    "mia_asr": 0.4692028985507246,
+    "ss_leakage": 2.00235695047013e-06,
+    "status": "OK"
+  },
+  "delete_and_refine": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6922203302383423,
+    "trade_off": 0.8181208059837526,
+    "mia_asr": 0.717391304347826,
+    "ss_leakage": 0.5932320952415466,
+    "status": "OK"
+  },
+  "MAF": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.5303804874420166,
+    "trade_off": 0.6931354546064961,
+    "mia_asr": 0.4465579710144928,
+    "ss_leakage": 0.022234100848436356,
+    "status": "OK"
+  }
+}

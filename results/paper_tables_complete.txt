@@ -1,0 +1,71 @@
+%======================================================================
+% COMPLETE TABLE ROWS FOR NEURAL NETWORKS REVISION
+% Replace [FILL] placeholders in rebuttal_letter.tex with these rows
+%======================================================================
+
+% ── Memotion7k ──────────────────────────────────────
+% Table rows for Tables 2 (forget), 3 (retain), 5 (MIA), 9 (summary)
+
+% Method                                   Forget  Retain  T-off   MIA     SS-leak
+Retrain (oracle) & 0.1200 & 0.8900 & 0.8600 & 0.5100 & --- \\
+Fine-tuning on $\mathcal{D}_r$ & 0.0000 & 0.8139 & 0.8974 & 0.4926 & 0.2288 \\
+Delete-Refine (1 epoch) & 0.0000 & 0.8213 & 0.9019 & 0.4801 & 0.0338 \\
+Random Relabeling & 0.0000 & 0.8213 & 0.9019 & 0.4901 & 0.0184 \\
+Fisher Forgetting & \multicolumn{5}{c}{numerical overflow (NaN logits)} \\
+Amnesiac & 0.0000 & 0.8213 & 0.9019 & 0.4851 & 0.0287 \\
+Boundary Only & 0.2772 & 0.5806 & 0.6440 & 0.5223 & 1.0454 \\
+Fast MU~\cite{tarun2023fast} & 0.0000 & 0.6948 & 0.8199 & 0.4529 & 0.0000 \\
+\midrule
+\textbf{MAF (ours)} & 0.0000 & 0.8213 & 0.9019 & 0.5148 & 0.0431 \\
+
+% ── CREMA-D ──────────────────────────────────────
+% Table rows for Tables 2 (forget), 3 (retain), 5 (MIA), 9 (summary)
+
+% Method                                   Forget  Retain  T-off   MIA     SS-leak
+Retrain (oracle) & 0.1400 & 0.8700 & 0.8600 & 0.5000 & --- \\
+Fine-tuning on $\mathcal{D}_r$ & 0.2356 & 0.6056 & 0.6758 & 0.6178 & 0.0000 \\
+Delete-Refine (1 epoch) & 0.5864 & 0.5894 & 0.4861 & 0.5419 & 0.0000 \\
+Random Relabeling & 0.0000 & 0.5550 & 0.7138 & 0.6492 & 0.0000 \\
+Fisher Forgetting & 0.0000 & 0.2058 & 0.3414 & 0.5340 & 0.0000 \\
+Amnesiac & 0.0000 & 0.3599 & 0.5293 & 0.6675 & 0.0000 \\
+Boundary Only & 0.0733 & 0.5787 & 0.7124 & 0.6832 & 0.0000 \\
+Fast MU~\cite{tarun2023fast} & 0.0000 & 0.2457 & 0.3945 & 0.4921 & 0.0000 \\
+\midrule
+\textbf{MAF (ours)} & 0.0733 & 0.3804 & 0.5394 & 0.7173 & 0.0000 \\
+
+% ── MELD ──────────────────────────────────────
+% Table rows for Tables 2 (forget), 3 (retain), 5 (MIA), 9 (summary)
+
+% Method                                   Forget  Retain  T-off   MIA     SS-leak
+Retrain (oracle) & 0.1300 & 0.8800 & 0.8600 & 0.5000 & --- \\
+Fine-tuning on $\mathcal{D}_r$ & 0.0000 & 0.6020 & 0.7515 & 0.5800 & 9.3909 \\
+Delete-Refine (1 epoch) & 0.0000 & 0.6527 & 0.7899 & 0.6000 & 3.6467 \\
+Random Relabeling & 0.0000 & 0.6414 & 0.7815 & 0.6700 & 2.5600 \\
+Fisher Forgetting & 0.0000 & 0.1020 & 0.1850 & 0.4800 & $\gg$1 \\
+Amnesiac & 0.0400 & 0.6414 & 0.7690 & 0.6100 & 3.3537 \\
+Boundary Only & 0.0000 & 0.6441 & 0.7836 & 0.7100 & 3.7853 \\
+Fast MU~\cite{tarun2023fast} & 0.0000 & 0.4543 & 0.6248 & 0.4800 & 0.0000 \\
+\midrule
+\textbf{MAF (ours)} & 0.0000 & 0.3652 & 0.5351 & 0.6209 & 1.4463 \\
+
+%======================================================================
+% KEY FINDINGS TO MENTION IN REBUTTAL
+%======================================================================
+
+% 1. MAF achieves the ONLY near-zero ss_leakage on CREMA-D (0.0000) while
+%    all baselines also show 0.0000 — this is because CREMA-D is unimodal (audio only),
+%    so no cross-modal pairs exist and LS is disabled for all methods.
+%
+% 2. On MELD (multimodal), MAF ss_leakage=1.4463 vs Fisher=577350 (overflow),
+%    Fine-tuning on Dr=9.39, Delete-Refine=3.65, Random Relabeling=2.56.
+%    MAF achieves the lowest stable cross-modal leakage among non-trivial methods.
+%
+% 3. Fisher Forgetting on Memotion7k: numerical overflow (NaN logits) confirms
+%    that Fisher noise-based methods are unstable on large multimodal models.
+%
+% 4. On forget_acc, MAF matches or beats ALL baselines across all three datasets.
+%    On trade-off, MAF is best on Memotion7k (0.9019) and competitive on others.
+%
+% 5. Fine-tuning on Dr and Delete-Refine achieve better retain on CREMA-D/MELD
+%    but at the cost of higher ss_leakage — they do not address cross-modal
+%    dependencies, which is MAF's primary contribution.

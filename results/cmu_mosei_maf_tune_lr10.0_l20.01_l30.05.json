@@ -1,0 +1,14 @@
+{
+  "lambda_r": 10.0,
+  "lambda_2": 0.01,
+  "lambda_3": 0.05,
+  "seed": 42,
+  "forget_acc": null,
+  "retain_acc": null,
+  "trade_off": null,
+  "mia_asr": null,
+  "ss_leakage": null,
+  "epochs_run": -1,
+  "elapsed_s": 1.5,
+  "status": "FAILED: Error(s) in loading state_dict for MAFModel:\n\tMissing key(s) in state_dict: \"audio_encoder.net.0.weight\", \"audio_encoder.net.0.bias\", \"audio_encoder.net.1.weight\", \"audio_encoder.net.1.bias\", \"audio_encoder.net.4.weight\", \"audio_encoder.net.4.bias\", \"audio_encoder.net.5.weight\", \"audio_encoder.net.5.bias\", \"audio_encoder.net.8.weight\", \"audio_encoder.net.8.bias\". \n\tUnexpected key(s) in state_dict: \"audio_encoder.cnn.0.weight\", \"audio_encoder.cnn.0.bias\", \"audio_encoder.cnn.1.weight\", \"audio_encoder.cnn.1.bias\", \"audio_encoder.cnn.1.running_mean\", \"audio_encoder.cnn.1.running_var\", \"audio_encoder.cnn.1.num_batches_tracked\", \"audio_encoder.cnn.4.weight\", \"audio_encoder.cnn.4.bias\", \"audio_encoder.cnn.5.weight\", \"audio_encoder.cnn.5.bias\", \"audio_encoder.cnn.5.running_mean\", \"audio_encoder.cnn.5.running_var\", \"audio_encoder.cnn.5.num_batches_tracked\", \"audio_encoder.cnn.8.weight\", \"audio_encoder.cnn.8.bias\", \"audio_encoder.cnn.9.weight\", \"audio_encoder.cnn.9.bias\", \"audio_encoder.cnn.9.running_mean\", \"audio_encoder.cnn.9.running_var\", \"audio_encoder.cnn.9.num_batches_tracked\", \"audio_encoder.gru.weight_ih_l0\", \"audio_encoder.gru.weight_hh_l0\", \"audio_encoder.gru.bias_ih_l0\", \"audio_encoder.gru.bias_hh_l0\", \"audio_encoder.gru.weight_ih_l0_reverse\", \"audio_encoder.gru.weight_hh_l0_reverse\", \"audio_encoder.gru.bias_ih_l0_reverse\", \"audio_encoder.gru.bias_hh_l0_reverse\", \"audio_encoder.proj.0.weight\", \"audio_encoder.proj.0.bias\", \"audio_encoder.proj.1.weight\", \"audio_encoder.proj.1.bias\". "
+}

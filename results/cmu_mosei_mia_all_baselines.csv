@@ -1,0 +1,8 @@
+method,forget_acc,retain_acc,trade_off,mia_asr,status
+random_relabeling,0.0000,0.6735,0.8049,0.7736,OK
+fisher_forgetting,1.0000,0.0000,0.0000,0.5000,OK
+amnesiac,0.6649,0.6678,0.4463,0.4475,OK
+boundary,0.4058,0.6758,0.6324,0.8080,OK
+fast_mu,0.0000,0.5332,0.6956,0.4692,OK
+delete_and_refine,0.0000,0.6922,0.8181,0.7174,OK
+MAF,0.0000,0.5304,0.6931,0.4466,OK

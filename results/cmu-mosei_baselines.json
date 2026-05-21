@@ -1,0 +1,44 @@
+{
+  "random_relabeling": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.7007381916046143,
+    "trade_off": 0.8240400492723469,
+    "mia_asr": 0.8016304347826086,
+    "ss_leakage": 0.05354335904121399
+  },
+  "fisher_forgetting": {
+    "forget_acc": 1.0,
+    "retain_acc": 0.0,
+    "trade_off": 0.0,
+    "mia_asr": 0.5,
+    "ss_leakage": 31669.888671875
+  },
+  "amnesiac": {
+    "forget_acc": 0.6630434989929199,
+    "retain_acc": 0.6666666865348816,
+    "trade_off": 0.4476534157863614,
+    "mia_asr": 0.44565217391304346,
+    "ss_leakage": 0.8840841054916382
+  },
+  "boundary": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6808631420135498,
+    "trade_off": 0.8101351323557802,
+    "mia_asr": 0.7807971014492754,
+    "ss_leakage": 0.10738690197467804
+  },
+  "fast_mu": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.5315161943435669,
+    "trade_off": 0.6941045694543028,
+    "mia_asr": 0.5,
+    "ss_leakage": 1.624484070816834e-06
+  },
+  "delete_and_refine": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6973310708999634,
+    "trade_off": 0.8216794977189955,
+    "mia_asr": 0.7327898550724637,
+    "ss_leakage": 0.8238623738288879
+  }
+}

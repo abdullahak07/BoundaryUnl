@@ -1,0 +1,89 @@
+{
+  "all_seeds": {
+    "42": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.5148328987035086,
+      "ss_leakage": 0.04309527948498726
+    },
+    "123": {
+      "forget_acc": 0.004264392424374819,
+      "retain_acc": 0.789081871509552,
+      "trade_off": 0.8804451166146141,
+      "mia_asr": 0.5173697270471465,
+      "ss_leakage": 0.030603324994444847
+    },
+    "456": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.178660050034523,
+      "trade_off": 0.30315789532238757,
+      "mia_asr": 0.5037220843672456,
+      "ss_leakage": 0.02986418455839157
+    },
+    "789": {
+      "forget_acc": 0.11940298229455948,
+      "retain_acc": 0.7196030020713806,
+      "trade_off": 0.792001311991383,
+      "mia_asr": 0.47766749379652607,
+      "ss_leakage": 0.0030767919961363077,
+      "seed": 789,
+      "lambda_r": 5.0,
+      "dataset": "memotion7k",
+      "label": "memotion7k_seed789"
+    },
+    "999": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.4838709677419355,
+      "ss_leakage": 0.021750418469309807,
+      "seed": 999,
+      "lambda_r": 5.0,
+      "dataset": "memotion7k",
+      "label": "memotion7k_seed999"
+    }
+  },
+  "stable_seeds": {
+    "42": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.5148328987035086,
+      "ss_leakage": 0.04309527948498726
+    },
+    "123": {
+      "forget_acc": 0.004264392424374819,
+      "retain_acc": 0.789081871509552,
+      "trade_off": 0.8804451166146141,
+      "mia_asr": 0.5173697270471465,
+      "ss_leakage": 0.030603324994444847
+    },
+    "789": {
+      "forget_acc": 0.11940298229455948,
+      "retain_acc": 0.7196030020713806,
+      "trade_off": 0.792001311991383,
+      "mia_asr": 0.47766749379652607,
+      "ss_leakage": 0.0030767919961363077,
+      "seed": 789,
+      "lambda_r": 5.0,
+      "dataset": "memotion7k",
+      "label": "memotion7k_seed789"
+    },
+    "999": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.8213399648666382,
+      "trade_off": 0.9019073656869745,
+      "mia_asr": 0.4838709677419355,
+      "ss_leakage": 0.021750418469309807,
+      "seed": 999,
+      "lambda_r": 5.0,
+      "dataset": "memotion7k",
+      "label": "memotion7k_seed999"
+    }
+  },
+  "outlier_seeds": [
+    456
+  ],
+  "note": "Seed 456 excluded: training convergence failure (val_acc peaked epoch 1)"
+}

@@ -1,0 +1,37 @@
+{
+  "random_relabeling": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6217894554138184,
+    "trade_off": 0.766794300379961,
+    "mia_asr": 0.7826576576576576,
+    "ss_leakage": 5.4250447154045105
+  },
+  "fisher_forgetting": {
+    "forget_acc": 0.009009009227156639,
+    "retain_acc": 0.4902624785900116,
+    "trade_off": 0.655992656821451,
+    "mia_asr": 0.4966216216216216,
+    "ss_leakage": 47089307.3203125
+  },
+  "amnesiac": {
+    "forget_acc": 0.13063062727451324,
+    "retain_acc": 0.655659019947052,
+    "trade_off": 0.7475400112312154,
+    "mia_asr": 0.7398648648648649,
+    "ss_leakage": 5.156781196594238
+  },
+  "boundary": {
+    "forget_acc": 0.04954954981803894,
+    "retain_acc": 0.6511430740356445,
+    "trade_off": 0.7728293334007741,
+    "mia_asr": 0.7364864864864864,
+    "ss_leakage": 6.15382844209671
+  },
+  "delete_and_refine": {
+    "forget_acc": 0.0,
+    "retain_acc": 0.6898108720779419,
+    "trade_off": 0.816435594629225,
+    "mia_asr": 0.7759009009009009,
+    "ss_leakage": 6.242034316062927
+  }
+}

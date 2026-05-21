@@ -1,0 +1,11 @@
+{
+  "forget_acc": 0.015706805512309074,
+  "retain_acc": 0.31681033968925476,
+  "trade_off": 0.47933812046207025,
+  "mia_asr": 0.6989528795811518,
+  "ss_leakage": 0.0,
+  "seed": 42,
+  "lambda_r": 1.0,
+  "dataset": "crema-d",
+  "label": "cremad_lambda1"
+}

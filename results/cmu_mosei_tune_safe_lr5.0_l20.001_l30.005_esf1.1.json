@@ -1,0 +1,19 @@
+{
+  "lambda_r": 5.0,
+  "lambda2": 0.001,
+  "lambda3": 0.005,
+  "early_stop_factor": 1.1,
+  "seed": 42,
+  "forget_acc": 0.15217390656471252,
+  "retain_acc": 0.2640545070171356,
+  "trade_off": 0.4026912620783659,
+  "mia_asr": 0.47010869565217395,
+  "ss_leakage": 0.01940750516951084,
+  "L_B": null,
+  "L_G": null,
+  "L_H": null,
+  "L_S": null,
+  "epochs_run": -1,
+  "elapsed_s": 225.2,
+  "status": "OK"
+}

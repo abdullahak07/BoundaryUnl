@@ -1,0 +1,11 @@
+{
+  "forget_acc": 0.0,
+  "retain_acc": 0.8213399648666382,
+  "trade_off": 0.9019073656869745,
+  "mia_asr": 0.4838709677419355,
+  "ss_leakage": 0.021750418469309807,
+  "seed": 999,
+  "lambda_r": 5.0,
+  "dataset": "memotion7k",
+  "label": "memotion7k_seed999"
+}
