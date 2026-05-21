@@ -240,34 +240,7 @@ The supplementary CMU-MOSEI three-branch stress test uses \(\lambda_r = 3.0\) af
 
 ---
 
-## 🧹 What Not to Upload
 
-For a clean public repository, exclude:
-
-```text
-.venv/
-.idea/
-__pycache__/
-data/
-checkpoints/
-*.pt
-*.pth
-*.ckpt
-*.pkl
-*.npy
-*.npz
-*.bak
-*.safe_bak
-*.py.bak
-patch_*.py
-fix_*.py
-diagnose_*.py
-safe_reset.py
-```
-
-Use `.gitignore` to keep the repository clean.
-
----
 
 ## 📄 Citation
 
