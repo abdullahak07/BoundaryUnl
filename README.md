@@ -82,7 +82,6 @@ BoundaryUnl/
     └── response_to_reviewers.pdf
 ```
 
-> ⚠️ Do **not** upload raw datasets, checkpoints, virtual environments, backup files, or temporary patch/debug scripts.
 
 ---
 
