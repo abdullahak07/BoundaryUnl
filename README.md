@@ -33,7 +33,7 @@ The framework combines decision-space and representation-space mechanisms to red
 ## 🖼️ Framework
 
 <p align="center">
-  <img src="docs/figures/frame.pdf" width="900" alt="MAF Framework Overview">
+  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/frame.pdf" width="900" alt="MAF Framework Overview">
 </p>
 
 <p align="center">
@@ -221,19 +221,19 @@ python scripts/generate_paper_tables.py
 ### Forget Accuracy
 
 <p align="center">
-  <img src="docs/figures/forget_accuracy.pdf" width="750" alt="Forget Accuracy">
+  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/forget_accuracy.pdf" width="750" alt="Forget Accuracy">
 </p>
 
 ### Retain Accuracy
 
 <p align="center">
-  <img src="docs/figures/retain_accuracy.pdf" width="750" alt="Retain Accuracy">
+  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/retain_accuracy.pdf" width="750" alt="Retain Accuracy">
 </p>
 
 ### Membership Inference Attack
 
 <p align="center">
-  <img src="docs/figures/privacy_mia.pdf" width="750" alt="MIA Comparison">
+  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/privacy_mia.pdf" width="750" alt="MIA Comparison">
 </p>
 
 If these images are not yet available, place the generated paper figures inside:
