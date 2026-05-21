@@ -1,0 +1,203 @@
+"""
+Fusion module and full MAF (Multimodal Unlearning Framework) model.
+
+Architecture:
+    Text  → TextEncoder  → z_t (B, D)  ─┐
+    Image → ImageEncoder → z_i (B, D)  ─┤→ Attention Fusion → z_s (B, D) → Classifier
+    Audio → AudioEncoder → z_a (B, D)  ─┘
+"""
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from typing import Optional, Tuple, Dict
+
+from models.encoders import build_text_encoder, ImageEncoder, build_audio_encoder
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Attention-based Fusion
+# ─────────────────────────────────────────────────────────────────────────────
+
+class AttentionFusion(nn.Module):
+    """
+    Learnable attention over available modality embeddings,
+    projected into a shared 512-dim space z_s.
+    """
+
+    def __init__(self, fusion_dim: int = 512, modalities: Tuple[str, ...] = ("text", "image", "audio")):
+        super().__init__()
+        self.modalities = modalities
+        n = len(modalities)
+
+        # Per-modality attention score (scalar)
+        self.attn = nn.Linear(fusion_dim * n, n)
+        # Final projection
+        self.proj = nn.Sequential(
+            nn.Linear(fusion_dim * n, fusion_dim),
+            nn.LayerNorm(fusion_dim),
+            nn.Tanh(),
+        )
+
+    def forward(self, embeddings: Dict[str, torch.Tensor]) -> torch.Tensor:
+        """
+        Args:
+            embeddings: dict mapping modality name → (B, D) tensor
+        Returns:
+            z_s: (B, D) shared representation
+        """
+        vecs = [embeddings[m] for m in self.modalities if m in embeddings]
+        concat = torch.cat(vecs, dim=-1)                  # (B, D*n)
+        weights = torch.softmax(self.attn(concat), dim=-1)  # (B, n)
+
+        # Weighted sum
+        stack = torch.stack(vecs, dim=1)                  # (B, n, D)
+        attended = (weights.unsqueeze(-1) * stack).sum(1)  # (B, D)
+
+        # Gated residual
+        z_s = self.proj(concat) + attended
+        return z_s
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Full MAF Model
+# ─────────────────────────────────────────────────────────────────────────────
+
+class MAFModel(nn.Module):
+    """
+    Complete multimodal model with separate encoders, attention fusion,
+    and classification head.
+
+    Supports unimodal / bimodal / trimodal inputs gracefully.
+    """
+
+    def __init__(
+        self,
+        num_classes: int,
+        fusion_dim: int = 512,
+        modalities: Tuple[str, ...] = ("text", "image", "audio"),
+        text_model_name: str = "bert-base-uncased",
+        audio_encoder_type: str = "crnn",
+        n_mels: int = 128,
+        tiny: bool = False,
+    ):
+        super().__init__()
+        self.modalities = modalities
+        self.fusion_dim  = fusion_dim
+        self.num_classes = num_classes
+
+        # Build encoders for requested modalities
+        if "text" in modalities:
+            self.text_encoder  = build_text_encoder(text_model_name, fusion_dim)
+        if "image" in modalities:
+            self.image_encoder = ImageEncoder(fusion_dim, tiny=tiny)
+        if "audio" in modalities:
+            self.audio_encoder = build_audio_encoder(audio_encoder_type, n_mels, fusion_dim)
+
+        self.fusion = AttentionFusion(fusion_dim, modalities)
+        self.classifier = nn.Linear(fusion_dim, num_classes)
+
+    # ── Forward ──────────────────────────────────────────────────────────────
+
+    def encode(self, batch: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
+        """Run each modality encoder and return dict of embeddings."""
+        embs = {}
+        if "text" in self.modalities and "input_ids" in batch:
+            embs["text"] = self.text_encoder(
+                batch["input_ids"], batch["attention_mask"]
+            )
+        if "image" in self.modalities and "image" in batch:
+            embs["image"] = self.image_encoder(batch["image"])
+        if "audio" in self.modalities and "audio" in batch:
+            embs["audio"] = self.audio_encoder(batch["audio"])
+        return embs
+
+    def fuse(self, embs: Dict[str, torch.Tensor]) -> torch.Tensor:
+        """Fuse embeddings into shared representation z_s."""
+        return self.fusion(embs)
+
+    def forward(self, batch: Dict[str, torch.Tensor]) -> Tuple[torch.Tensor, torch.Tensor]:
+        """
+        Returns:
+            logits: (B, C)
+            z_s:    (B, D)  shared latent representation
+        """
+        embs  = self.encode(batch)
+        z_s   = self.fuse(embs)
+        logits = self.classifier(z_s)
+        return logits, z_s
+
+    def get_embeddings(self, batch: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
+        """Return per-modality embeddings (for shared-space loss)."""
+        return self.encode(batch)
+
+    # ── Convenience ──────────────────────────────────────────────────────────
+
+    def predict(self, batch: Dict[str, torch.Tensor]) -> torch.Tensor:
+        logits, _ = self.forward(batch)
+        return logits.argmax(dim=-1)
+
+    def predict_proba(self, batch: Dict[str, torch.Tensor]) -> torch.Tensor:
+        logits, _ = self.forward(batch)
+        return torch.softmax(logits, dim=-1)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Factory
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+class CovarEPEncoder(nn.Module):
+    """
+    Lightweight encoder for COVAREP 74-dim acoustic features (CMU-MOSI).
+    Input:  (B, 74) averaged COVAREP vector
+    Output: (B, fusion_dim)
+    """
+    def __init__(self, input_dim: int = 74, hidden_dim: int = 256, out_dim: int = 512):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(hidden_dim, out_dim),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if x.dim() == 3:
+            x = x.squeeze(1)
+        return self.net(x)
+
+DATASET_CONFIGS = {
+    "memotion7k": {
+        "num_classes": 3,
+        "modalities": ("text", "image"),
+        "chance": 1 / 3,
+    },
+    "crema-d": {
+        "num_classes": 6,
+        "modalities": ("audio",),
+        "chance": 1 / 6,
+    },
+    "meld": {
+        "num_classes": 7,
+        "modalities": ("text", "audio"),
+        "chance": 1 / 7,
+    },
+}
+
+
+def build_model(dataset: str, config, tiny: bool = False) -> MAFModel:
+    cfg = DATASET_CONFIGS[dataset]
+    return MAFModel(
+        num_classes=cfg["num_classes"],
+        fusion_dim=config.fusion_dim,
+        modalities=cfg["modalities"],
+        text_model_name=config.text_model_name,
+        audio_encoder_type=config.audio_encoder,
+        n_mels=config.n_mels,
+        tiny=tiny,
+    )
