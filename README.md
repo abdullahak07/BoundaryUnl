@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg" />
   <img src="https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg" />
   <img src="https://img.shields.io/badge/Task-Multimodal%20Unlearning-purple.svg" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" />
+  <img src="https://img.shields.io/badge/Datasets-Memotion7k%20%7C%20CREMA--D%20%7C%20MELD%20%7C%20CMU--MOSEI-orange.svg" />
   <img src="https://img.shields.io/badge/Reproducibility-Scripts%20Included-brightgreen.svg" />
 </p>
 
@@ -19,7 +19,7 @@
 
 This repository contains the implementation of **MAF**, a **Multimodal Unlearning Framework** for selectively removing the influence of targeted data from multimodal fusion models without full retraining.
 
-MAF is designed for settings where information is distributed across multiple modalities, such as:
+MAF is designed for settings where information is distributed across multiple modalities:
 
 - 📝 text
 - 🖼️ image
@@ -27,6 +27,18 @@ MAF is designed for settings where information is distributed across multiple mo
 - 🎭 video-derived facial action-unit features
 
 The framework combines decision-space and representation-space mechanisms to reduce forgotten-class accuracy, preserve retained utility, and diagnose residual privacy leakage.
+
+---
+
+## 🖼️ Framework
+
+<p align="center">
+  <img src="docs/figures/frame.pdf" width="900" alt="MAF Framework Overview">
+</p>
+
+<p align="center">
+  <i>Figure: Overview of MAF. Replace <code>docs/figures/framework.png</code> with the final framework figure from the paper.</i>
+</p>
 
 ---
 
@@ -43,7 +55,7 @@ The framework combines decision-space and representation-space mechanisms to red
 
 ---
 
-## 🗂️ Recommended Repository Structure
+## 🗂️ Repository Structure
 
 ```text
 BoundaryUnl/
@@ -79,6 +91,11 @@ BoundaryUnl/
 │   └── final_tables/
 │
 └── docs/
+    ├── figures/
+    │   ├── framework.png
+    │   ├── forget_accuracy.png
+    │   ├── retain_accuracy.png
+    │   └── mia_comparison.png
     └── response_to_reviewers.pdf
 ```
 
@@ -173,8 +190,6 @@ python scripts/generate_paper_tables.py
 
 ## 🧪 Evaluation Metrics
 
-MAF is evaluated using the following metrics:
-
 | Metric | Direction | Meaning |
 |---|---:|---|
 | 🎯 Forget Accuracy | ↓ | Accuracy on forgotten samples; lower is better |
@@ -183,6 +198,88 @@ MAF is evaluated using the following metrics:
 | 🕵️ MIA ASR | ↓ | Membership inference attack success rate |
 | 🔗 Shared-Space Leakage | ↓ | Residual cross-modal covariance leakage |
 | ⏱️ Wall-Clock Time | ↓ | Computational cost compared with full retraining |
+
+---
+
+## 📊 Main Results
+
+### Result Summary
+
+| Dataset | Main Modality Setting | Forget Accuracy ↓ | Retain Accuracy ↑ | MIA ASR ↓ | Key Observation |
+|---|---|---:|---:|---:|---|
+| Memotion7k | Text + Image | 0.0309 | 0.7878 | 0.4984 | Stable below-chance forgetting in supplementary stable-seed check |
+| CREMA-D | Audio | 0.0733 | 0.3804 | 0.7173 | Harder privacy/utility trade-off; audio-only setting |
+| MELD | Text + Audio | 0.0000 | 0.3652 | 0.6209 | Complete forgetting but lower retained utility than some baselines |
+| CMU-MOSEI | Text + Acoustic/Proxy | 0.0000 | 0.5304 | 0.4466 | Complete forgetting and strongest MIA result among compared baselines |
+
+> Note: Results should be interpreted as approximate unlearning diagnostics, not certified deletion guarantees.
+
+---
+
+## 📉 Visual Results
+
+### Forget Accuracy
+
+<p align="center">
+  <img src="docs/figures/forget_accuracy.pdf" width="750" alt="Forget Accuracy">
+</p>
+
+### Retain Accuracy
+
+<p align="center">
+  <img src="docs/figures/retain_accuracy.pdf" width="750" alt="Retain Accuracy">
+</p>
+
+### Membership Inference Attack
+
+<p align="center">
+  <img src="docs/figures/privacy_mia.pdf" width="750" alt="MIA Comparison">
+</p>
+
+If these images are not yet available, place the generated paper figures inside:
+
+```text
+docs/figures/
+```
+
+Recommended names:
+
+```text
+framework.png
+forget_accuracy.png
+retain_accuracy.png
+mia_comparison.png
+tradeoff_score.png
+shared_space_leakage.png
+```
+
+---
+
+## 🧾 CMU-MOSEI Main Evaluation
+
+| Method | Forget ↓ | Retain ↑ | Trade-off ↑ | MIA ↓ |
+|---|---:|---:|---:|---:|
+| Random Relabeling | 0.0000 | 0.6735 | 0.8049 | 0.7736 |
+| Fast MU | 0.0000 | 0.5332 | 0.6956 | 0.4692 |
+| Delete-Refine | 0.0000 | 0.6922 | 0.8181 | 0.7174 |
+| **MAF (ours)** | **0.0000** | 0.5304 | 0.6931 | **0.4466** |
+
+MAF does not maximise retained accuracy on CMU-MOSEI, but it achieves complete forgetting with the lowest MIA score among the compared baselines.
+
+---
+
+## 🎭 CMU-MOSEI Three-Branch Stress Test
+
+| Method | Forget ↓ | Retain ↑ | Trade-off ↑ | Forget Criterion |
+|---|---:|---:|---:|---|
+| Delete-Refine | **0.000** | **0.690** | **0.816** | Yes |
+| Random Relabeling | 0.000 | 0.622 | 0.767 | Yes |
+| Boundary | 0.050 | 0.651 | 0.773 | Yes |
+| Amnesiac | 0.131 | 0.656 | 0.748 | Yes |
+| Fisher Forgetting | 0.009 | 0.490 | 0.656 | Yes |
+| **MAF (ours, λr = 3.0)** | 0.331 | 0.296 | 0.410 | Yes; slightly below chance |
+
+This stress test is intentionally reported as a limitation-oriented analysis. It shows applicability to video-derived FACET42 features, but also exposes reduced retained accuracy in a harder multimodal setting.
 
 ---
 
@@ -200,28 +297,16 @@ L_{BU}
 
 where:
 
-- \(L_{BU}\): boundary unlearning loss  
-- \(L_G\): auxiliary gradient-cosine diagnostic  
-- \(L_H\): Hessian/Fisher-guided stabilization  
-- \(L_S\): shared-space decorrelation loss  
+- \(L_{BU}\): boundary unlearning loss
+- \(L_G\): auxiliary gradient-cosine diagnostic
+- \(L_H\): Hessian/Fisher-guided stabilization
+- \(L_S\): shared-space decorrelation loss
 
 The projected update \(g_f^\perp\) is the operative gradient-control mechanism used to reduce interference between forgotten and retained objectives.
 
 ---
 
-## 📊 Main Findings
-
-- ✅ MAF achieves below-chance or near-zero forgetting across the main datasets.
-- ✅ CMU-MOSEI results show complete forgetting with the lowest MIA among compared baselines.
-- ✅ The three-branch CMU-MOSEI stress test demonstrates applicability to video-derived FACET42 features.
-- ⚠️ MAF does not dominate every baseline on retained accuracy; it is best interpreted as a forgetting–privacy–utility trade-off method.
-- ⚠️ Privacy results are empirical diagnostics, not certified deletion guarantees.
-
----
-
-## 🧾 Reproducibility Notes
-
-Main experiments use:
+## 🧾 Reproducibility Settings
 
 | Setting | Value |
 |---|---|
@@ -241,6 +326,10 @@ The supplementary CMU-MOSEI three-branch stress test uses \(\lambda_r = 3.0\) af
 
 
 
+Use `.gitignore` to keep the repository clean.
+
+---
+
 ## 📄 Citation
 
 If you use this code, please cite:
@@ -258,8 +347,6 @@ If you use this code, please cite:
 ---
 
 ## 📬 Contact
-
-For questions or collaboration:
 
 ```text
 Abdullah Ahmad Khan
