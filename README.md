@@ -33,7 +33,7 @@ The framework combines decision-space and representation-space mechanisms to red
 ## 🖼️ Framework
 
 <p align="center">
-  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/frame.jpg" width="900" alt="MAF Framework Overview">
+  <img src="https://raw.githubusercontent.com/abdullahak07/BoundaryUnl/main/figures/frame.jpg" width="900" alt="MAF Framework Overview">
 </p>
 
 <p align="center">
