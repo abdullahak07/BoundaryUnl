@@ -221,19 +221,19 @@ python scripts/generate_paper_tables.py
 ### Forget Accuracy
 
 <p align="center">
-  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/forget_accuracy.jpg" width="750" alt="Forget Accuracy">
+  <img src="https://raw.githubusercontent.com/abdullahak07/BoundaryUnl/main/figures/forget_accuracy.jpg" width="750" alt="Forget Accuracy">
 </p>
 
 ### Retain Accuracy
 
 <p align="center">
-  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/retain_accuracy.jpg" width="750" alt="Retain Accuracy">
+  <img src="https://raw.githubusercontent.com/abdullahak07/BoundaryUnl/main/figures/retain_accuracy.jpg" width="750" alt="Retain Accuracy">
 </p>
 
 ### Membership Inference Attack
 
 <p align="center">
-  <img src="https://github.com/abdullahak07/BoundaryUnl/tree/main/figures/privacy_mia.jpg" width="750" alt="MIA Comparison">
+  <img src="https://raw.githubusercontent.com/abdullahak07/BoundaryUnl/main/figures/privacy_mia.jpg" width="750" alt="MIA Comparison">
 </p>
 
 If these images are not yet available, place the generated paper figures inside:
