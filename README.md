@@ -355,7 +355,3 @@ Murdoch University, Perth, Australia
 ```
 
 ---
-
-## ⚠️ Disclaimer
-
-This repository is intended for academic research on approximate multimodal machine unlearning. The reported privacy evaluations are empirical diagnostics and should not be interpreted as certified deletion guarantees.
