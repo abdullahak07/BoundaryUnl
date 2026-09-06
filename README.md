@@ -37,7 +37,7 @@ The framework combines decision-space and representation-space mechanisms to red
 </p>
 
 <p align="center">
-  <i>Figure: Overview of MAF. Replace <code>docs/figures/framework.png</code> with the final framework figure from the paper.</i>
+  <i>Figure: Overview of MAF.</i>
 </p>
 
 ---
